@@ -1,1 +1,10 @@
 This file will contain the progress 
+
+Commands for laravel : 
+to install new laravel project use 
+after install composer 
+
+composer create-project laravel/laravel example-app
+
+
+to run application php artisan serve

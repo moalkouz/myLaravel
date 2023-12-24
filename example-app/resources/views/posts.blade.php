@@ -1,23 +1,19 @@
-<title>my blog</title>
-<body>
-
+@extends('layout')
+{{-- this is for the name of the view that will be extended  --}}
+{{-- you can use one of them the extends or you can use x-layout another abroash
+the section used to set all content inside the section into content inside the layout --}}
+@section('content')
+    <?php foreach ($posts as $value):
+    ?>
     <article>
-    <a href="/post/my-first-post">my first post </a>
-        this is my first post
-
+        <h1>
+            <a href="/post/{{ $value->id }}">
+                {{ $value->title }}
+            </a>
+        </h1>
+    {!! $value->body !!}
     </article>
 
-    <article>
-        <a href="/post/my-second-post">my second post </a>
-            this is my second post
 
-        </article>
-
-        <article>
-            <a href="/post/my-first-post">my first post </a>
-                this is my first post
-
-            </article>
-
-
-</body>
+    <?php endforeach; ?>
+@endsection

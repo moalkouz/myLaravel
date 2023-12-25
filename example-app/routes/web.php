@@ -16,15 +16,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $posts=Post::All();
+  //to avoid problem n+1 that hapeen when select items base on the number of rows in database
+  //so the following code will execute two query however the number of rows one to get all post and the second to get category for all post
+  $posts=Post::with('category')->get();
+    //$posts=Post::All();
     return view('posts',["posts"=>$posts]);
 });
 //->where('post',[]) we can add where to set constraint to the url befoer route to is
 // ->whereAlpha /// special constarain
 
 Route::get('/post/{post:slug}', function (Post $post) {
-
-
     return view('post',['post'=>$post]);
 });
 Route::get('/categories/{category:slug}',function(Category $category){

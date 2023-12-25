@@ -16,4 +16,8 @@ class Post extends Model
         //to get access to all the another tabel that have a realation with post
         return $this->belongsTo(Category::class);
     }
+    public function user(){
+        //to get access to all the another tabel that have a realation with post
+        return $this->belongsTo(User::class);
+    }
 }

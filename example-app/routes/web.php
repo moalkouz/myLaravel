@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,17 @@ Route::get('/', function () {
 //->where('post',[]) we can add where to set constraint to the url befoer route to is
 // ->whereAlpha /// special constarain
 
-Route::get('/post/{post}', function ($slug) {
+Route::get('/post/{post:slug}', function (Post $post) {
+
+
+    return view('post',['post'=>$post]);
+});
+Route::get('/categories/{category:slug}',function(Category $category){
+
+    return view('posts',["posts"=>$category->posts]);
+
+});
+
     //any thing in {post} will move to slug
     //abort(404) return a 404 messsage
     //file_get_content to get all content in html file
@@ -35,8 +46,11 @@ Route::get('/post/{post}', function ($slug) {
 //     return file_get_contents($path);
 //    });
 
-    $post=Post::find($slug);
+    // $post=Post::find($id);
 
-    return view('post',['post'=>$post]);
-});
 
+    // Route::get('/post/{post:slug}', function (Post $post) {
+        //this route will make a query to get the post the have slug equal with the $post
+        //this approsh called route model binding
+    //     return view('post',['post'=>$post]);
+    // });

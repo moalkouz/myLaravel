@@ -6,8 +6,9 @@ the section used to set all content inside the section into content inside the l
     <?php foreach ($posts as $value):
     ?>
     <article>
+        <a href="/categories/{{ $value->category->slug }}">{{ $value->category->name }} </a>
         <h1>
-            <a href="/post/{{ $value->id }}">
+            <a href="/post/{{ $value->slug }}">
                 {{ $value->title }}
             </a>
         </h1>

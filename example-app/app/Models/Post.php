@@ -9,4 +9,11 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $fillable=[
+        'title','excerpt','body','slug'
+    ];
+    public function category(){
+        //to get access to all the another tabel that have a realation with post
+        return $this->belongsTo(Category::class);
+    }
 }
